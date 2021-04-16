@@ -3,7 +3,6 @@ package receiptgenerator;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -41,7 +40,7 @@ public class ReceiptGenerator {
     int ID;
     int quantity;
     System.out.println("==========WELCOME TO ALYSHA'S BAKESHOP==========");
-    System.out.println("ID/Bar Code | BREAD NAME |\t PRICE");
+    System.out.println("ID/Bar Code\t\t| BREAD NAME |\t\tPRICE");
 
     while ((lineiL = iL.readLine()) != null) {
       itemListToDisplay.add(lineiL);
@@ -55,7 +54,7 @@ public class ReceiptGenerator {
     try {
       for (int i = 0; i <= itemListToDisplay.size(); i++) {
         for (int e = 0; e <= priceList.size(); e++) {
-          System.out.println(e + "\t\t" + itemListToDisplay.get(e) + "\t\t" + priceList.get(e));
+          System.out.println(e + "\t\t\t" + itemListToDisplay.get(e) + "\t\t\t" + priceList.get(e));
         }
       }
     } catch (IndexOutOfBoundsException a) {
@@ -87,7 +86,7 @@ public class ReceiptGenerator {
     try {
       iL.close();
       System.out.println("\t\t------Summary------");
-      System.out.println("Bread Name \t|\t\t\t  Price \t|\t  Quantity \t|\t  Total");
+      System.out.println("Bread Name \t\t\t\t|\t\t\t\t  Price \t\t\t\t|\t\t\t\t  Quantity \t|\t  Total");
       fw.write("\n\t\t ---------------------Receipt------------------");
       fw.write("\nBread Name \t|\t  Price \t|\t  Quantity \t|\t  Total");
 
