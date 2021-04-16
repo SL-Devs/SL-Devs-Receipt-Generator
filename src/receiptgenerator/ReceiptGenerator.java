@@ -1,4 +1,5 @@
 
+
 package receiptgenerator;
 
 import java.io.BufferedReader;
@@ -17,9 +18,17 @@ public class ReceiptGenerator {
 
   public static void main(String[] args) throws FileNotFoundException, IOException {
     Date myDate = new Date();
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-    String myDateString = sdf.format(myDate);
+    SimpleDateFormat sdfDate = new SimpleDateFormat("MM-dd-yyyy");
+    String myDateString = sdfDate.format(myDate);
 
+    SimpleDateFormat sdfDay = new SimpleDateFormat("E");
+    String myDayString = sdfDay.format(myDate);
+   
+    SimpleDateFormat sdfHour = new SimpleDateFormat("hh:mm aa");
+    String myHourString = sdfHour.format(myDate);
+    
+    
+    
     ArrayList<String> itemList = new ArrayList<>();
     ArrayList<String> itemListToDisplay = new ArrayList<>();
     ArrayList<Double> priceList = new ArrayList<>();
@@ -40,6 +49,9 @@ public class ReceiptGenerator {
     int ID;
     int quantity;
     System.out.println("==================== WELCOME TO ALYSHA'S BAKESHOP ====================\n");
+      System.out.println("Day: " + myDayString);
+      System.out.println("Date: " + myDateString);
+      System.out.println("Time: " + myHourString + "\n");
     System.out.println("| ID/Bar Code |\t\t| BREAD NAME |\t\t\t| PRICE |");
 
     while ((lineiL = iL.readLine()) != null) {
@@ -93,9 +105,15 @@ public class ReceiptGenerator {
     try {
       iL.close();
       System.out.println("-------------------------Summary-------------------------\n");
+      System.out.println("Day: " + myDayString);
+      System.out.println("Date: " + myDateString);
+      System.out.println("Time: " + myHourString);
       System.out.println("| Bread Name |\t\t| Price |\t| Quantity|\t| Total |\n");
       fw.write(" ---------------------Receipt----------------------------\n");
-      fw.write("| Bread Name |\t\t| Price |\t\t| Quantity |\t\t|  Total |");
+      fw.write("\nDay: " + myDayString);
+      fw.write("\nDate: " + myDateString);
+      fw.write("\nTime: " + myHourString);
+      fw.write("\n| Bread Name |\t\t| Price |\t\t| Quantity |\t\t|  Total |");
 
       total = 0;
       for (int i = 0; i <= itemList.size(); i++) {
