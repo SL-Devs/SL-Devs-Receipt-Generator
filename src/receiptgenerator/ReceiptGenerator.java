@@ -39,8 +39,8 @@ public class ReceiptGenerator {
     double total = 0;
     int ID;
     int quantity;
-    System.out.println("==========WELCOME TO ALYSHA'S BAKESHOP==========");
-    System.out.println("ID/Bar Code\t\t| BREAD NAME |\t\tPRICE");
+    System.out.println("==================== WELCOME TO ALYSHA'S BAKESHOP ====================\n");
+    System.out.println("| ID/Bar Code |\t\t| BREAD NAME |\t\t\t| PRICE |");
 
     while ((lineiL = iL.readLine()) != null) {
       itemListToDisplay.add(lineiL);
@@ -54,7 +54,8 @@ public class ReceiptGenerator {
     try {
       for (int i = 0; i <= itemListToDisplay.size(); i++) {
         for (int e = 0; e <= priceList.size(); e++) {
-          System.out.println(e + "\t\t\t" + itemListToDisplay.get(e) + "\t\t\t" + priceList.get(e));
+          System.out.println("");
+          System.out.println(e + "\t\t\t  " + itemListToDisplay.get(e) + "\t\t\t  " + priceList.get(e));
         }
       }
     } catch (IndexOutOfBoundsException a) {
@@ -66,13 +67,19 @@ public class ReceiptGenerator {
       try {
         System.out.print("ID/Bar Code: ");
         ID = s.nextInt();
+        System.out.println(" ");
+
         itemList.add(itemListToDisplay.get(ID));
         currentPriceList.add(priceList.get(ID));
         System.out.print("Quantity: ");
         quantity = s.nextInt();
         quantityList.add(quantity);
-        System.out.println("Add more orders? Y/N ");
+        System.out.println(" ");
+
+        System.out.print("Add more orders? Y/N: ");
         responseYN = s.next().charAt(0);
+        System.out.println(" ");
+
       } catch (InputMismatchException k) {
         System.out.println("Invalid Input");
         System.out.println("Please try again...");
@@ -85,41 +92,45 @@ public class ReceiptGenerator {
 
     try {
       iL.close();
-      System.out.println("\t\t------Summary------");
-      System.out.println("Bread Name \t\t\t\t|\t\t\t\t  Price \t\t\t\t|\t\t\t\t  Quantity \t|\t  Total");
-      fw.write("\n\t\t ---------------------Receipt------------------");
-      fw.write("\nBread Name \t|\t  Price \t|\t  Quantity \t|\t  Total");
+      System.out.println("-------------------------Summary-------------------------\n");
+      System.out.println("| Bread Name |\t\t| Price |\t| Quantity|\t| Total |\n");
+      fw.write(" ---------------------Receipt----------------------------\n");
+      fw.write("| Bread Name |\t\t| Price |\t\t| Quantity |\t\t|  Total |");
 
       total = 0;
       for (int i = 0; i <= itemList.size(); i++) {
         for (int e = 0; e <= quantityList.size(); e++) {
           total += quantityList.get(e) * currentPriceList.get(e);
-          fw.write("\n" + itemList.get(e) + "\t-\t\t" + currentPriceList.get(e) + "\t\t-\t\t" + quantityList.get(e)
-              + "\t\t-\t\t" + (quantityList.get(e) * currentPriceList.get(e)));
-          System.out.println(itemList.get(e) + "\t-\t\t" + currentPriceList.get(e) + "\t-\t" + quantityList.get(e)
-              + "\t-\t" + (quantityList.get(e) * currentPriceList.get(e)));
+          fw.write("\n" + itemList.get(e) + " \t\t\t\t " + currentPriceList.get(e) + " \t\t\t\t\t "
+              + quantityList.get(e) + " \t\t\t\t\t " + (quantityList.get(e) * currentPriceList.get(e)));
+
+          System.out.println(" ");
+          System.out.println(itemList.get(e) + "\t\t  " + currentPriceList.get(e) + "\t\t  " + quantityList.get(e)
+              + "\t\t  " + (quantityList.get(e) * currentPriceList.get(e)));
         }
       }
     } catch (IndexOutOfBoundsException e) {
 
     }
 
-    System.out.println("Total: " + total);
+    System.out.println("\nTotal: " + total);
 
-    System.out.println("-----------------------------------------------------");
+    System.out.println("-------------------------------------------------------");
 
     System.out.print("Payment: ");
     payment = s.nextDouble();
     change = payment - total;
+    System.out.println(" ");
+
     System.out.print("Change: " + change);
     System.out.println("\nThank you for purchasing our product! ");
     System.out.println("Please come again! ");
     fw.write("\nTotal: " + String.valueOf(total));
-    fw.write("\n-----------------------------------------------------");
+    fw.write("\n----------------------------------------------------------");
     fw.write("\nPayment: " + String.valueOf(payment));
     fw.write("\nChange: " + String.valueOf(change));
-    fw.write("\n\t\tThank you for purchasing our product! ");
-    fw.write("\n\t\t\tPlease come again! ");
+    fw.write("\n\n\t\t\t\t\tThank you for purchasing our product!");
+    fw.write("\n\t\t\t\t\t\t\t\t\t\tPlease come again!");
     fw.close();
   }
 }

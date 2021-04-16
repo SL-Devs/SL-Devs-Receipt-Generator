@@ -1,0 +1,10 @@
+ ---------------------Receipt----------------------------
+| Bread Name |		| Price |		| Quantity |		|  Total |
+Pandesal  				 2.0 					 2 					 4.0
+Total: 4.0
+----------------------------------------------------------
+Payment: 20.0
+Change: 16.0
+
+					Thank you for purchasing our product!
+										Please come again!
