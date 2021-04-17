@@ -36,6 +36,11 @@ public class ReceiptGenerator {
     SimpleDateFormat sdfHour = new SimpleDateFormat("hh:mm aa"); // Set hour format
     String myHourString = sdfHour.format(myDate); // Format hour to string and pass it to myHourString variable
 
+    SimpleDateFormat sdfHourr = new SimpleDateFormat("hh-mm-ss aa"); // Set hour format //this one is seperated for the
+                                                                     // purpose of txt file or for the receipt name
+    String myHourStringForFile = sdfHourr.format(myDate); // Format hour to string and pass it to myHourStringForFile
+                                                          // variable
+
     ArrayList<String> itemList = new ArrayList<>(); // Create an ArrayList object for itemList
     ArrayList<String> itemListToDisplay = new ArrayList<>(); // Create an ArrayList object for itemListToDisplay
     ArrayList<Double> priceList = new ArrayList<>(); // Create an ArrayList object for priceList
@@ -54,7 +59,8 @@ public class ReceiptGenerator {
      */
     BufferedReader pL = new BufferedReader(new FileReader("priceList.txt"));
 
-    String nameOfReceipt = myDateString + ".txt"; // Adds myDateString to a txt file and assign it to nameOfReceipt
+    String nameOfReceipt = myDateString + " " + myHourStringForFile + ".txt"; // Adds myDateString to a txt file and
+                                                                              // assign it to nameOfReceipt
 
     /*
      * Creates a new File instance by converting the given pathname string into an
@@ -82,7 +88,7 @@ public class ReceiptGenerator {
     System.out.println("Date: " + myDateString); // Prints the current Date
     System.out.println("Time: " + myHourString + "\n"); // Prints the current Hour
 
-    System.out.println("| ID/Bar Code |\t\t| BREAD NAME |\t\t\t| PRICE |"); // Prints for console UI
+    System.out.println("|     ID     |\t\t| BREAD NAME |\t\t\t| PRICE |"); // Prints for console UI
 
     /*
      * While assign iL(BufferReader) to lineiL(String) and reads the line of
@@ -122,10 +128,10 @@ public class ReceiptGenerator {
     } catch (IndexOutOfBoundsException a) { // Catch any exceptions if possible
     }
 
-    // Loop for getting the order
-    do { // This is a do while loop
-      try { // Try to test this block of code
-        System.out.print("ID/Bar Code: "); // Prints this text
+    try { // Try to test this block of code
+      // Loop for getting the order
+      do { // This is a do while loop
+        System.out.print("ID: "); // Prints this text
         ID = s.nextInt(); // Read user input
         System.out.println(" "); // Add a new line
 
@@ -143,23 +149,23 @@ public class ReceiptGenerator {
         quantityList.add(quantity); // Appends the specified element/item to the end of quantityList
         System.out.println(" "); // Add a new line
 
-        System.out.print("Add more orders? Y/N: "); // prints this text
+        System.out.print("Add more orders? Y - yes/ Any key - no: "); // prints this text
         responseYN = s.next().charAt(0); // Read user input and return the char at the specific index in a string
         System.out.println(" "); // Add a new line
 
-      } catch (InputMismatchException k) { // Catch a input mismatch by a user
-        // And perform this command after mismatch
-        System.out.println("Invalid Input");
-        System.out.println("Please try again...");
-      } catch (IndexOutOfBoundsException e) { // Catch a exception by a user
-        // And perform this command after exception
-        System.out.println("Invalid Input");
-        System.out.println("Do you still want to continue? ");
-        responseYN = s.next().charAt(0); // Read user input and return the char at the specific index in a string
-      }
-      // Both y and Y are accepted in user input simply it's not case-sensitive
-    } while (responseYN == 'y' || responseYN == 'Y');
-
+        // Both y and Y are accepted in user input simply it's not case-sensitive
+      } while (responseYN == 'y' || responseYN == 'Y');
+    } catch (InputMismatchException k) { // Catch a input mismatch by a user
+      // And perform this command after mismatch
+      System.out.println("Invalid Input");
+      System.out.println("Please try again...");
+      System.exit(0);
+    } catch (IndexOutOfBoundsException e) { // Catch a exception which is about the limit of ID by a user
+      // And perform this command after exception
+      System.out.println("ID doesn't exist");
+      System.out.println("Please try again...");
+      System.exit(0);
+    }
     try { // Try to test this block of code
       iL.close(); // Closes the stream and releases any system resources associated with it.
                   // Prints this text for console UI
@@ -186,7 +192,6 @@ public class ReceiptGenerator {
       // 2d Array
       for (int i = 0; i <= itemList.size(); i++) { // for loop the number of elements in the itemList
         for (int e = 0; e <= quantityList.size(); e++) { // for loop the number of elements in the quantityList
-
           /*
            * adds(+) the total of specified elements in the quantityList times(x) the
            * currentPriceList and assign(=) it to the total variable
@@ -197,10 +202,10 @@ public class ReceiptGenerator {
            * Writes the string of itemList, currentPriceList, and quantityList x
            * currentPriceList to a txt file
            */
-          fw.write("\n" + itemList.get(e) + " \t\t\t\t\t" + currentPriceList.get(e) + " \t\t\t\t\t\t"
-              + quantityList.get(e) + " \t\t\t\t\t\t" + (quantityList.get(e) * currentPriceList.get(e)));
+          fw.write("\n" + itemList.get(e) + " \t\t\t\t" + currentPriceList.get(e) + " \t\t\t\t\t" + quantityList.get(e)
+              + " \t\t\t\t\t" + (quantityList.get(e) * currentPriceList.get(e)));
 
-          System.out.println(" "); // adds a new line
+          System.out.println(" "); // Add a new line
 
           /*
            * Prints the string of of itemList, currentPriceList, and quantityList x
@@ -222,6 +227,10 @@ public class ReceiptGenerator {
     System.out.print("Payment: "); // Prints this text
     payment = s.nextDouble(); // Initialized payment to double
     change = payment - total; // Subtract payment to total and assign it to variable change
+    if (change < 0) {
+      System.out.println("Warning: Payment is inadequate!!!");
+
+    }
     System.out.println(" "); // Added new line
 
     System.out.print("Change: " + change); // Prints change
@@ -235,12 +244,17 @@ public class ReceiptGenerator {
     // Converts the value of payment to String and writes it in a txt file
     fw.write("\nPayment: " + String.valueOf(payment));
 
+    if (change < 0) {
+      // Writes this text for Console UI in a txt file
+      fw.write("\nWarning: Payment is inadequate!!!");
+    }
+
     // Converts the value of change to String and writes it in a txt file
     fw.write("\nChange: " + String.valueOf(change));
 
     // note: "\n" = new line & "\t" for tab spacing
-    fw.write("\n\n\t\t\t\t\tThank you for purchasing our product!"); // Writes this text in a txt file
-    fw.write("\n\t\t\t\t\t\t\t\t\t\tPlease come again!");// Writes this text in a txt file
+    fw.write("\n\n\t\t\t\t\t\tThank you for purchasing our product!"); // Writes this text in a txt file
+    fw.write("\n\t\t\t\t\t\t\t Please come again!");// Writes this text in a txt file
     fw.close(); // Closed the writing in a txt file
   }
 }
