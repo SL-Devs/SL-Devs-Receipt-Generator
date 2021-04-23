@@ -1,15 +1,15 @@
-Day: Sat
-Date: 04-17-2021
-Time: 08:27 pm
+Day: Fri
+Date: 04-23-2021
+Time: 11:11 am
 
 ---------------------Receipt----------------------------
 | Bread Name |		| Price |		| Quantity |		|  Total |
-Emapanada 				100.0 					2 					200.0
-Cheese Bread  				20.0 					4 					80.0
-Total: 280.0
+Emapanada 				  100.0					  3 					 300.0
+Ensayamada  				  10.0					  3 					 30.0
+Total: 330.0
 ----------------------------------------------------------
-Payment: 300.0
-Change: 20.0
+Payment: 340.0
+Change: 10.0
 
 						Thank you for purchasing our product!
 							 Please come again!

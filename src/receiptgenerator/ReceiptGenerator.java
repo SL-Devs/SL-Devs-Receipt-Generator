@@ -202,8 +202,8 @@ public class ReceiptGenerator {
            * Writes the string of itemList, currentPriceList, and quantityList x
            * currentPriceList to a txt file
            */
-          fw.write("\n" + itemList.get(e) + " \t\t\t\t" + currentPriceList.get(e) + " \t\t\t\t\t" + quantityList.get(e)
-              + " \t\t\t\t\t" + (quantityList.get(e) * currentPriceList.get(e)));
+          fw.write("\n" + itemList.get(e) + " \t\t\t\t  " + currentPriceList.get(e) + "\t\t\t\t\t  "
+              + quantityList.get(e) + " \t\t\t\t\t " + (quantityList.get(e) * currentPriceList.get(e)));
 
           System.out.println(" "); // Add a new line
 

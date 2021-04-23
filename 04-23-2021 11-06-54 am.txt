@@ -1,0 +1,17 @@
+Day: Fri
+Date: 04-23-2021
+Time: 11:06 am
+
+---------------------Receipt----------------------------
+| Bread Name |		| Price |		| Quantity |		|  Total |
+Buko Pie  				  100.0 					  2 					 200.0
+Ensayamada  				  10.0 					  4 					 40.0
+Emapanada 				  100.0 					  5 					 500.0
+Total: 740.0
+----------------------------------------------------------
+Payment: 20.0
+Warning: Payment is inadequate!!!
+Change: -720.0
+
+						Thank you for purchasing our product!
+							 Please come again!

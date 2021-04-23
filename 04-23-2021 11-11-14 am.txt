@@ -1,0 +1,14 @@
+Day: Fri
+Date: 04-23-2021
+Time: 11:11 am
+
+---------------------Receipt----------------------------
+| Bread Name |		| Price |		| Quantity |		|  Total |
+Emapanada 				  100.0					  5					 500.0
+Total: 500.0
+----------------------------------------------------------
+Payment: 2000.0
+Change: 1500.0
+
+						Thank you for purchasing our product!
+							 Please come again!
